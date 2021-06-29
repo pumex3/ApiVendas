@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-console */
+import '@shared/typeorm';
 import 'reflect-metadata';
 import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import routes from './routes';
 import AppError from '@shared/errors/AppError';
-import '@shared/typeorm';
+import 'express-async-errors'
 
 const app = express();
 app.use(cors());
@@ -21,6 +22,7 @@ app.use(
         message: error.message,
       });
     }
+
 
     return response.status(500).json({
       status: 'error',
